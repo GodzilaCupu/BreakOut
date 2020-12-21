@@ -6,7 +6,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // deklarasi kecepatan player
-    public GameObject pannelWin;
     public float speed = 12f;
     // deklarasi gravity
     public float gravity = -9.81f;
@@ -26,13 +25,14 @@ public class Movement : MonoBehaviour
     // deklarasi velocity untuk menyimpan nilai ketinggian;
     Vector3 velocity;
     
-    public GameObject cameraOld,cameraNew;
+    public GameObject cameraOld,cameraNew,pannelWin,pannelLoose;
     public Animator anim;
 
 
     private void Update()
     {
         PlayerMovement();
+        Controlller();
     }
 
     private void FixedUpdate()
@@ -60,7 +60,6 @@ public class Movement : MonoBehaviour
         // mengecek ketinggian 
         velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
-
         // fungsi untuk loncat
         if (Input.GetButtonDown("Jump") && isGround)
         {
@@ -71,15 +70,17 @@ public class Movement : MonoBehaviour
         {
             player.Move(gerak * speed * 3 * Time.deltaTime);
 
-        }else if (Input.GetKey(KeyCode.P))
+        }
+    }
+
+    void Controlller()
+    { 
+        if (Input.GetKey(KeyCode.P))
         {
             SceneManager.LoadScene("Level 2");
-        }else if (Input.GetKey(KeyCode.M))
-        {
-            pannelWin.SetActive(true);
-        }
+        }   
 
-
+        //Controller
         if (Input.GetKey(KeyCode.LeftControl))
         {
             cameraNew.SetActive(true);
@@ -90,20 +91,32 @@ public class Movement : MonoBehaviour
             cameraNew.SetActive(false);
             cameraOld.SetActive(true);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
 
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    void OnCollisionEnter(Collision Coll)
     {
-        if (collision.collider.CompareTag("VentCover"))
+        Debug.Log("Test");
+        if(SceneManager.GetActiveScene().name == "1")
         {
-            fadetolavel(2);
-            SceneManager.LoadScene(2);
-        }else if (collision.collider.CompareTag("pintu2"))
-        {
-            fadetolavel(3);
-            SceneManager.LoadScene(3);
+            if (Coll.gameObject.name == "VentCover")
+            {
+                Debug.Log("Vent");
+                Destroy(Coll.gameObject);
+            }
+
+            if(Coll.gameObject.name == "Laser")
+            {
+                Debug.Log("Laser");
+                pannelLoose.SetActive(true);
+            }
         }
 
     }
