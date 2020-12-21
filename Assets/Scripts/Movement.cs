@@ -24,16 +24,12 @@ public class Movement : MonoBehaviour
 
     // deklarasi velocity untuk menyimpan nilai ketinggian;
     Vector3 velocity;
-    
-    public GameObject cameraOld,cameraNew,pannelWin,pannelLoose;
-    public Animator anim;
-
 
     private void Update()
     {
         PlayerMovement();
-        Controlller();
     }
+
 
     private void FixedUpdate()
     {
@@ -71,58 +67,5 @@ public class Movement : MonoBehaviour
             player.Move(gerak * speed * 3 * Time.deltaTime);
 
         }
-    }
-
-    void Controlller()
-    { 
-        if (Input.GetKey(KeyCode.P))
-        {
-            SceneManager.LoadScene("Level 2");
-        }   
-
-        //Controller
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            cameraNew.SetActive(true);
-            cameraOld.SetActive(false);
-        }
-        else
-        {
-            cameraNew.SetActive(false);
-            cameraOld.SetActive(true);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-
-
-    }
-
-
-    void OnCollisionEnter(Collision Coll)
-    {
-        Debug.Log("Test");
-        if(SceneManager.GetActiveScene().name == "1")
-        {
-            if (Coll.gameObject.name == "VentCover")
-            {
-                Debug.Log("Vent");
-                Destroy(Coll.gameObject);
-            }
-
-            if(Coll.gameObject.name == "Laser")
-            {
-                Debug.Log("Laser");
-                pannelLoose.SetActive(true);
-            }
-        }
-
-    }
-
-    public void fadetolavel(int levelIndex)
-    {
-        anim.SetTrigger("Transisison");
     }
 }
