@@ -30,6 +30,45 @@ public class Controller : MonoBehaviour
             cameraNew.SetActive(false);
             cameraOld.SetActive(true);
         }
+
+        if (SceneManager.GetActiveScene().name == "1")
+        {
+
+            if (Input.GetKey(KeyCode.Y))
+            {
+                SceneManager.LoadScene("1");
+            }
+            else if (Input.GetKey(KeyCode.N))
+            {
+                SceneManager.LoadScene("Main Menu");
+            }
+        }else
+        if (SceneManager.GetActiveScene().name == "1-1")
+        {
+
+            if (Input.GetKey(KeyCode.Y))
+            {
+                GantiScence();
+            }
+            else if (Input.GetKey(KeyCode.N))
+            {
+                SceneManager.LoadScene("Main Menu");
+            }
+        }else
+        if (SceneManager.GetActiveScene().name == "Level 2")
+        {
+
+            if (Input.GetKey(KeyCode.Y))
+            {
+                GantiScence();
+            }
+            else if (Input.GetKey(KeyCode.N))
+            {
+                SceneManager.LoadScene("Main Menu");
+            }
+        }
+
+
     }
 
     void OnCollisionEnter(Collision Coll)
@@ -79,7 +118,8 @@ public class Controller : MonoBehaviour
 
             if (Coll.collider.CompareTag("Lift"))
             {
-                GantiScence();
+
+                pannelWin.SetActive(true);
             }
 
 
@@ -90,6 +130,12 @@ public class Controller : MonoBehaviour
             {
                 Debug.Log("testing");
             }
+            if (Coll.collider.CompareTag("WIN"))
+            {
+                pannelWin.SetActive(true);
+            }
+
+
         }
 
     }
