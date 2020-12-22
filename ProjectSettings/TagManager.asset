@@ -7,6 +7,12 @@ TagManager:
   - VentCover
   - pintu1
   - Laser
+  - Crosair
+  - papan
+  - katanyaAir
+  - Lift
+  - Tuas
+  - Envirotment
   layers:
   - Default
   - TransparentFX
