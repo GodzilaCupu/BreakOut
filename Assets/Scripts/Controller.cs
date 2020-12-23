@@ -60,7 +60,7 @@ public class Controller : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Y))
             {
-                GantiScence();
+                SceneManager.LoadScene("1");
             }
             else if (Input.GetKey(KeyCode.N))
             {

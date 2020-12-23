@@ -5,10 +5,22 @@ using UnityEngine;
 
 public class Uiimanager : MonoBehaviour
 {
+
+    public GameObject credits;
     #region MainMenu
     public void playIntro()
     {
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene("1");
+    }
+
+
+    public void Credits()
+    {
+        credits.SetActive(true);
+    }
+    public void ExitCreadits()
+    {
+        credits.SetActive(false);
     }
 
     public void Quit()
